@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{user.username}}님의 mypage</h1>
+<h1>이름: {{user.profile.name}}</h1>
+<h1>닉네임: {{user.profile.nickname}}</h1>
+<h1>이메일: {{user.profile.email}}</h1>
+
+<br><br>
+<h1>스크랩한 템플릿들!!!!</h1>
+<div class="row">
+{% for scrap in scraps.all %}
+<div class="col-md-4">
+  <div class="card" style="width: 300; height: 450; ">
+    <img src="{{scrap.post.image.url}}" class="card-img-top" width="150">
+        <div class="card-body">
+            <h5 class="card-title">{{scrap.post.title}}</h5>
+            <p class="card-text">{{scrap.post.summary}}</p>
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'detail' scrap.post.id %}">더보기</a></button>
+        </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

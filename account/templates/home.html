@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load staticfiles %}
+<html lang="ko"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>paporika</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style type = "text/css">
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      img {
+      margin-left: auto;
+      margin-right: auto;
+      }
+
+      .image:hover {
+        opacity: 0.5;
+      }
+
+      #more:hover {
+        opacity: 0.5;
+      }
+      
+    </style>
+    <!-- Custom styles for this template -->
+    
+  </head>
+  <body>
+  <main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+
+    <div class="container">
+    <br>
+    <!--
+    <h2 align="center">"파워포인트를 쉽고 편리하게 만들어볼카?"</h2>
+    <img src="{% static 'papo.png' %}" width="800" alt="메인사진" style="margin-left:auto; margin-right:auto; display:block;" />      
+    -->
+    <a href="{% url 'store' %}">
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbC9AsT%2FbtqxjBaoTZp%2FJR6ss35dAcQYx1eQw5X77k%2Fimg.png" class="image" width="400" alt="메인사진" style="margin-left:15%"/>
+    </a>
+    <a data-toggle="modal" data-target="#exampleModal">
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbQYZsl%2FbtqxhMjq6xY%2FNkTzx37AVymYBzkMKS6gf1%2Fimg.png" class="image" width="400" alt="메인사진" />
+    </a>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">서비스 준비 중</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          해당 서비스는 파포리카 ver.2 에서 공개할 예정입니다.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+      <br><br>
+    <a id="more" style="margin-left:79%; color:white" class="btn waves-effect waves-light red lighten-2" href="{% url 'info' %}" role="button">더 알아보기</a>
+    </div>
+
+
+
+    
+
+ 
+</main>
+</body></html>
+
+{% endblock %}

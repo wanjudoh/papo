@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<img src="https://image.flaticon.com/icons/svg/252/252025.svg" width="50" align="left">
+<h3>"PPT를 다운받고 <a href="{% url 'link' %}" id="more" class="btn waves-effect waves-light blue lighten-2">
+링크 게시판</a>으로 이동하세요"
+</h3>
+<br><br>
+<a href="{% url 'ppt' %}" id="more" class="btn waves-effect waves-light green lighten-2" width="300" style="margin-left:10%">PPT 다운로드</a>
+<br><br><br>
+<img src="https://png.pngtree.com/svg/20170728/bulb__311049.png" width="40" align="left">
+<h5>윈도우 키와 화살표를 누르면 인터넷창과 PPT를 동시에 볼 수 있어요!</h5>
+<img src="https://s.smore.com/u/thumbs/thumb-b6c9d4eb7649eca67e4f73a1508a5129.png" width=400px>
+<img src="{% static 'window.PNG' %}">
+
+
+{% endblock %}

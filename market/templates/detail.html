@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+  <div class="my-3 py-3">
+    <h2 class="display-5">{{post.title}}</h2>
+      <p class="lead">{{post.body|linebreaks}}</p>
+      <p>date: {{post.pub_date}}</p>
+      <p>author: {{post.author}}</p>
+      <p>스크랩 수: {{post.total_scraps}}</p>
+  </div>
+  <img src="{{post.image.url}}" style="width: 80%; height: auto; border-radius: 21px 21px 0 0;">
+</div>
+
+<!--
+<h1>제목: {{post.title}} </h1>
+<p>작성 날짜: {{post.pub_date}}</p>
+<h3>작성자: {{post.author}}</h3>
+<p>자세한 본문: {{post.body}}</p>
+<img src="{{post.image.url}}">
+-->
+
+<br>
+{% if post.author == user %}
+<a href="{% url 'postupdate' post.id %}" class="btn btn-primary" role="button" aria-pressed="true">수정하기</a>
+<a href="{% url 'postdelete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')" class="btn btn-secondary" role="button" aria-pressed="true">삭제하기</a>
+{% endif %}
+<!--
+<a href ="{% url 'postupdate' post.id %}">수정하기</a>
+<a href="{% url 'postdelete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기 </a>
+<a id="post.id" href="{{ post.pptfile.url }}" download>다운로드</a>
+-->
+  {% if scrap %}
+    <a href="{% url 'scrap' post.id %}" class="btn btn-warning" aria-pressed="true">스크랩 취소</a>
+  {% else %}
+    <a href="{% url 'scrap' post.id %}" class="btn btn-warning" aria-pressed="true">스크랩</a>
+  {% endif %}
+
+<a id="post.id" class="btn btn-info" href="{{ post.pptfile.url }}" role="button">파일 다운로드</a>
+
+<br><br><br>
+    <a href="{% url 'commentcreate' post.id %}">댓글 작성하기</a>
+    <form method='POST'>
+        {% csrf_token %}
+        {{form}}
+        <button type='submit'>댓글 등록</button>
+    </form>
+
+<br>
+<!--
+
+<h4>댓글 목록</h4>
+<form method='POST'>
+    {% csrf_token %}
+    {{ form_comment}}
+    <button type='submit'>댓글 수정</button>
+</form>
+-->
+{% for comment in post.comment_set.all %}
+
+<div class="alert alert-secondary" role="alert">
+{{comment.author}} |  {{comment.content}}
+{% if comment.author == user %}
+    <div style="float: right; vertical-align: middle;">
+    <!--<a class="btn btn-info" href="{% url 'commentupdate' comment.id %}">수정</a>-->
+    <a class="btn btn-light" href="{% url 'commentdelete' comment.id %}">삭제</a>
+    </div>
+{% endif %}
+</div>
+{% endfor %}
+
+{% endblock %}

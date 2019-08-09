@@ -1,0 +1,167 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load staticfiles %}
+<!--아래 나오는거 js 템플릿 쓰는 CDN-->
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+
+  @font-face { 
+    font-family: 'Malssami815'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/Malssami815.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal;
+    }
+
+  @font-face {
+    font-family: 'YiSunShinDotumM'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal;
+    }
+      
+      
+
+  #section {
+    min-height: 100%;
+    position: relative;
+    margin-top: 50px;
+    }
+
+
+  footer {
+    position: absolute;
+    bottom: 0;  
+    width: 100%;
+    }
+
+    ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
+    width: 10px;
+    height: 10px;
+
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #8c8c8c;
+    border-radius: 10px;
+
+  }
+
+  ::-webkit-scrollbar-thumb:hover{
+    background: #333333;
+
+  }
+
+</style>
+
+<!-- 귀여운 파포리 넣기-->
+<header>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'YiSunShinDotumM'">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2Fmbhet%2FbtqxhK0fTa3%2FUIDyERGVMJhx3GXERgRBtk%2Fimg.png" width="40" height="40" alt="">
+      PAPORIKA
+    </a>
+  <!-- <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"> 
+          <a class="nav-link" href="{% url 'info' %}">파포리카 소개</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link" href="{% url 'link' %}">사이트 추천</a>
+        </li>
+        <li class="nav-item">  
+          <a class="nav-link" href="{% url 'store' %}">템플릿 장터</a>
+        </li>
+        <li class="nav-item">  
+          <a class="nav-link" href="{% url 'honeytip' %}">꿀팁 게시판</a>
+        </li>
+      </ul>
+      
+      <!--<form class="form-inline my-2 my-lg-0">-->
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <!--
+        <li class="nav-item">
+            <a class="nav-link"
+                aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                <a href="{% url 'mypage' user.id %}">mypage</a>
+            //<div class="dropdown-menu" aria-labelledby="navbarDropdown"//
+              <a class="nav-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+              <form id="logout" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %} <input type="hidden" />
+              </form>
+            </div>
+        </li>
+        -->
+        <li class="nav-item">
+          <a class="nav-link">환영합니다. {{ user.username }} 님!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'mypage' user.id %}">마이페이지</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+          <form id="logout" method="POST" action="{% url 'logout' %}">
+          {% csrf_token %} <input type="hidden" />
+          </form>
+        </li>
+        <!--
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+            <form id="logout" method="POST" action="{% url 'logout' %}">
+              {% csrf_token %} <input type="hidden" />
+            </form>
+          </div>
+        </li>
+      -->     
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">로그인</a>
+        </li>
+        {% endif %}
+      </ul>
+      <!--</form>-->
+    </div>
+  </nav>
+</header>
+
+
+<div class="container" id="section"  style="font-family: 'YiSunShinDotumM'">
+  {% block content %}
+  {% endblock %}
+
+
+<footer class="bd-footer text-muted">
+  <!--<div class="container-fluid p-3 p-md-5">-->
+
+  <br><br><hr>
+  2019 SOOKMYUNG LIKELION - 도완주 유지연 이하은 장이화
+  </div>
+</footer>
+
+</div>

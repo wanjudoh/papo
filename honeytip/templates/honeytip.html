@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<!--{% for tip in tips.all %}
+    <h1> {{tip.title}}</h1>
+    <p>{{tip.pub_date}}</p>
+    <p>{{tip.body}}</p>
+{% endfor %}-->
+
+<style type="text/css">
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: none;}
+
+</style>
+
+<img src="https://image.flaticon.com/icons/svg/252/252025.svg" width="50" align="left">
+  <h3>"이제 정말 다 끝나가요! 잘 모르겠는 정보를 꿀팁 게시판에서 찾아보세요. <br>
+    아래의 세 가지 카테고리별로 찾으면 더 큰 도움이 될 거예요!<br>
+    만약 원하는 추가적인 정보가 있다면 <a href="{% url 'suggestcreate' %}" id="more" class="btn waves-effect waves-light blue lighten-2">
+    폼 작성</a> 후 제출 버튼을 눌러주세요 :)
+  </h3>
+<br>
+<img src="https://png.pngtree.com/svg/20170728/bulb__311049.png" width="40" align="left">
+<h4>원하는 카테고리 누른 후 "GO!" 클릭</h4>
+<form action="{% url 'honeytip' %}" method="POST">
+        {% csrf_token %}
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-light">
+          <input type="radio" name="options" id="option1" value="1" autocomplete="off" checked> 귀차니즘
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option2" value="2" autocomplete="off"> 시간절약
+        </label>
+        <label class="btn btn-dark">
+          <input type="radio" name="options" id="option3" value="3" autocomplete="off"> 폭풍간지
+        </label>
+      </div>
+      <img src="https://image.flaticon.com/icons/svg/271/271228.svg" width=30 style="margin-left:20">
+      <input type="submit" value="GO!" class="btn btn-danger" style="margin-left:25; ">
+    </form>
+
+
+<br>
+<div style="padding-top: 20">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <!--<th scope="col">Summary</th>
+                <th scope="col">Link</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            {% for tip in tips.all %}
+                <tr>
+                    <th>{{tip.group}}</th>
+                    <th scope="row"><a href="{{tip.notion}}">{{tip.title}}</a></th>
+                    <td>{{tip.pub_date}}</td>
+                    <!--<td>써머리</td>
+                    <td>링크</td>-->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+다 만들었어요!? </button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">파포리카 서비스를 이용해주셔서 감사합니다.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        템플릿 마켓으로 가서 내가 만든 템플릿을 등록하세요! <br> 파포리카에게 큰 도움이 됩니다 :)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick = "location.href = '{% url 'store' %}' ">템플릿마켓 가기</button> 
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

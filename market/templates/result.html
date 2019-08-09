@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>SEARCH 결과 창</h1>
+
+{% for result in result.all %}
+
+<div class="card" style="width: 18rem;">
+    <img src="{{result.image.url}}" class="card-img-top" width="200">
+        <div class="card-body">
+          <h5 class="card-title">{{result.title}}</h5>
+          <p class="card-text">{{result.summary}}</p>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'detail' result.id %}">더보기</a></button>
+        </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

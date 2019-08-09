@@ -1,0 +1,179 @@
+<style>
+  #search {
+    background-color: antiquewhite;
+    border: 1px solid #feada6;
+    border-radius: 8px;
+
+  }
+
+  #search:hover {
+    background-color: antiquewhite;
+    border: 1px solid #feada6;
+    opacity: 0.8;
+  }
+
+  #newppt {
+    background-color: antiquewhite;
+    border: 3px solid #feada6;
+    border-radius: 8px;
+    padding: 10px;
+
+  }
+
+  #newppt:hover {
+    background-color: antiquewhite;
+    border: 3px solid #feada6;
+    border-radius: 8px;
+    padding: 10px;
+    opacity: 0.8;
+  }
+
+  #new {
+    background-color: antiquewhite;
+    border: 3px solid #feada6;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+  }
+
+  #new:hover {
+    background-color: antiquewhite;
+    border: 3px solid #feada6;
+    border-radius: 8px;
+    padding: 10px;
+    opacity: 0.8;
+  }
+
+  #more {
+
+  }
+
+  #more:hover {
+    opacity: 0.8;
+  }
+
+</style>
+
+
+
+
+{% extends 'base.html' %}
+{% block content %}
+<img src="https://image.flaticon.com/icons/svg/252/252025.svg" width="50" align="left">
+<h3>"둘러보며 마음에 드는 템플릿을 찾으세요!
+<br>
+마음에 드는 템플릿이 없다면 <a href="{% url 'empty_ppt' %}" id="more" class="btn waves-effect waves-light blue lighten-2">나만의 템플릿 만들기</a>
+를 눌러주세요"
+</h3>    
+
+
+<!--서치기능 구현중-->
+
+<div style="margin-left: 70%">
+<form action="{% url 'result' %}" method="get">
+<img src="https://image.flaticon.com/icons/png/512/55/55369.png" height="50">    
+<input type="search" name="query" style="width:200px;">
+    <input id="search" type="submit" value="검색" style="background-color: antiquewhite;
+    border: 4px solid #feada6;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    text-align: center;">
+  </form>
+</div>
+
+<!--
+<p>마음에 드는게 없다면? </p>
+<button type="button" id="newppt" ><a href="{% url 'empty_ppt' %}" style="color:black; text-decoration:none; ">새로운 피피티 만들기</a></button>
+-->
+<hr>
+{% if user.is_authenticated %}
+  <a href="{% url 'postcreate'%}" id="new" role="button" aria-pressed="true" style="color:black; text-decoration:none; ">새 글 쓰기</a>
+{% endif %}
+
+<br>
+<br>
+
+<!--작성한 글 카드형식으로 보이기-->
+<div class="row">
+    <div class="col-md-4">
+        <div class="card" style="width: 300; height: 320; ">
+          <img src="https://www.dictionary.com/e/wp-content/uploads/2018/08/crying-face-emoji.png" width= "169" height="169" style="display: block; margin-left: auto; margin-right: auto; ">
+            <div class="card-body">
+              <h5 class="card-title">마음에 드는 게 없나요?</h5>
+                <p class="card-text">걱정마세요:) 그래서 준비했어요</p>
+                <a href="{% url 'empty_ppt' %}" id="more" class="btn waves-effect waves-light blue lighten-2">나만의 템플릿 만들기</a>
+              </div>
+        </div>
+      </div>
+      
+{% for post in posts.all %}
+<div class="col-md-4">
+  <div class="card" style="width: 300; height: 320; ">
+    <img src="{{post.image.url}}" class="card-img-top" height="169">
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{post.summary}}</p>
+          {% if user.is_authenticated %}
+          <a href="{% url 'detail' post.id %}" id="more" class="btn waves-effect waves-light red lighten-2">더보기</a>
+          {% else %} 
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          더보기</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">로그인해야 이용가능한 서비스입니다.</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  [더보기] 기능은 로그인 한 사람만 사용할 수 있습니다.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick = "location.href = '{% url 'login' %}' ">로그인하기</button>                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+      </div>
+  </div>
+</div>
+{% endfor %}
+
+
+</div><br>
+{% endblock %}
+<!--
+<div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{post.title}}</text></svg>
+                <div class="card-body">
+                <p class="card-text">{{post.pub_date}}</p>
+                <p>{{post.body}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'detail' post.id %}">더보기</a></button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+
+
+<!--    
+<h1></h1>
+    <p>{{post.pub_date}}</p>
+    <p>{{post.body}}</p>
+    <a href="{% url 'detail' post.id %}">...more</a>
+-->

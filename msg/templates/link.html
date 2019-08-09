@@ -1,0 +1,143 @@
+<title>링크모음</title>
+<head>
+
+<style>
+    body {
+        margin-top: 60px;
+        margin-left: 70px;
+    }
+
+    #title{
+        font-size: 50px;
+    }
+
+
+    #link1{
+        width: 49%;
+        font-size: 40px;
+        margin-top: 10px;
+        background-color: antiquewhite;
+        border: 4px solid antiquewhite;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        text-align: center;
+    }
+
+
+    #link1:hover{
+        font-size: 40px;
+        margin-top: 10px;
+        background-color: antiquewhite;
+        border: 4px solid #feada6;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        opacity: 0.8;
+    }
+
+    #link{
+        font-size: 40px;
+        margin: 10px;
+    }
+
+    #btn {
+        width: 33%;
+        font-size: 40px;
+        margin-top: 10px;
+        background-color: antiquewhite;
+        border: 4px solid antiquewhite;
+        padding: 50px;
+        text-align: center;
+    }
+
+    #btn:hover{
+        font-size: 40px;
+        margin-top: 10px;
+        background-color: antiquewhite;
+        border: 4px solid #feada6;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        opacity: 0.8;
+    }
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+    }
+</style>
+
+</head>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    
+  <img src="https://image.flaticon.com/icons/svg/252/252025.svg" width="50" align="left">
+  <h3>"당신을 위해 여러가지 사이트를 준비했어요! 마음껏 둘러보세요 :)
+  <br>
+  PPT를 만들기 위해서 사용할 다양한 배경과, 아이콘, 폰트를 다운받고 </h3>
+  <h3 style="margin-left:5%">빈 PPT에 채워 넣은 다음
+  <a href="{% url 'honeytip' %}" id="more" class="btn waves-effect waves-light blue lighten-2">꿀팁 더 알아보기</a>
+  를 눌러주세요" </h3>
+  
+
+    <br>
+    
+    <!--<form action="{% url 'coloring' %}">-->
+    <a href="{% url 'coloring' %}">
+        <button id="link1" type="submit" value="색감" text-decoration="none">
+            색감
+        </button>
+    </a>
+
+    <a href="{% url 'icon' %}">
+        <button id="link1" type="submit" value="이미지 및 아이콘">
+            아이콘
+        </button>
+    </a>
+
+    <br>
+
+    <a href="{% url 'abroad' %}">
+        <button id="link1" type="submit" value="해외템플릿">
+            해외템플릿
+        </button>
+    </a>
+
+    
+    <a href="{% url 'font' %}">
+            <button id="link1" type="submit" value="해외템플릿">
+                폰트
+            </button>
+        </a>
+    <!--
+    <form action="{% url 'icon' %}" >
+        <input id="link1" type="submit" value="이미지 및 아이콘" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+    
+    <form action="{% url 'abroad' %}">
+        <input id="link1" type="button" value="해외템플릿">
+    -->
+    
+    <!-- collapse는 나중에 할거에오 -,- ~.~
+    <div class="collapse" id="collapseExample1">
+        <div class="card card-body">
+            색감을 추천해주는 사이트들 입니다 !
+        </div>
+    </div>
+
+    <div class="collapse" id="collapseExample2">
+        <div class="card card-body">
+            이미지와 아이콘을 추천해주는 사이트입니다!
+        </div>
+    </div>
+    -->
+
+</body>
+{% endblock %}

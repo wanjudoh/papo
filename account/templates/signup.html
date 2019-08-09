@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if error %}
+{{ error }}
+<br>
+<br>
+{% endif %}
+
+
+<!--
+<head>
+  <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  </head>
+
+<body>
+
+  <div class="text-center mb-4"> <br>
+    <h1 class="h3 mb-3 font-weight-normal">PAPORIKA에 오신걸 환영합니다!</h1>
+  </div>
+
+
+<form method="POST" action="{% url 'signup' %}">
+{% csrf_token %}
+<br>
+<div class="form-label-group" style="width:400px;">
+  <label for="inputUsername">ID</label>
+  <input name="username" type="text" class="form-control" id="inputUsername" placeholder="아이디" value="" required="" autofocus="">
+</div>
+<br>
+<div class="form-label-group" style="width:400px;">
+  <label for="inputPassword1">Password</label>
+  <input name="password1" type="password" id="inputPassword1" class="form-control" placeholder="비밀번호" value="" required="">
+</div>
+<br>
+<div class="form-label-group" style="width:400px;">
+  <label for="inputPassword2">Confirm Password</label>
+  <input name="password2" type="password" id="inputPassword2" class="form-control" placeholder="비밀번호 확인" value="" required="">
+</div>
+<br>
+<div class="form-label-group" style="width:400px;">
+  <label for="inputNickname">Nick Name</label>  
+  <input name="nickname" type="text" class="form-control" id="inputNickname" placeholder="닉네임" value="" required="">
+</div>
+<br>
+<div class="form-label-group" style="width:400px;">
+  <label for="inputEmail">Email Address</label>  
+  <input name="email" type="email" class="form-control" id="inputEmail" placeholder="이메일" value="" required="">
+</div>
+
+
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+
+<input class="btn btn-primary" type="submit" value="Sign up!">
+
+<br>
+<input class="btn btn-lg btn-primary btn-block" type="submit" style="width:400px;" value="회원가입">
+
+</form>
+</body>
+
+-->
+
+
+
+<form method="POST" action="{% url 'signup' %}">
+
+    {% csrf_token %}
+    ID:
+    <br>
+    <input name="username" type="text" value="">
+    <br>
+    Password:
+    <br>
+    <input name="password1" type="password" value="">
+    <br>
+    Confirm Password:
+    <br>
+    <input name="password2" type="password" value="">
+    <br>
+    성명:
+    <br>
+    <input name="name" type="text" value="">
+    <br>
+    별명:
+    <br>
+    <input name="nickname" type="text" value="">
+    <br>
+    Email:
+    <br>
+    <input name="email" type="email" value="">
+    <br>
+    <input class="btn btn-primary" type="submit" value="Sign up!">
+
+</form>
+
+{% endblock %}

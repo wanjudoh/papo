@@ -1,0 +1,50 @@
+<title>폰트 추천</title>
+
+<style>
+#back {
+    background-color: antiquewhite;
+    border: 5px solid antiquewhite;
+    border-radius: 8px;
+    padding: 10px;
+
+}
+
+#back:hover {
+background-color: antiquewhite;
+border: 5px solid #feada6;
+opacity: 0.8;
+padding: 10px;
+}
+</style>
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    <input id="back" type="button" value="뒤로가기" onclick="history.back();" />
+
+    <hr>
+
+    <div style="padding-top: 20">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for font in fonts.all %}
+                    <tr>
+                        <th style="vertical-align: middle; ">{{font.title}}</th>
+                        <td style="vertical-align: middle; ">{{font.body}}</td>
+                        <th scope="row"><a href="{{font.link}}" class="btn btn-secondary">GO</a></th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>    
+    </div>
+</body>
+{% endblock %}
